@@ -1,16 +1,12 @@
-/**
- * @prettier
- */
+import React from 'react'
+import BottomNavigation from '@material-ui/core/BottomNavigation'
+import { makeStyles } from '@material-ui/styles'
+import { Theme } from '@material-ui/core/styles'
 
-import React from 'react';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import { makeStyles } from '@material-ui/styles';
-import { Theme } from '@material-ui/core/styles';
+import Flex from '../../primitives/Flex'
 
-import Flex from '../../primitives/Flex';
-
-import FooterLeft from './FooterLeft';
-import FooterRight from './FooterRight';
+import FooterLeft from './FooterLeft'
+import FooterRight from './FooterRight'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -33,18 +29,22 @@ const useStyles = makeStyles((theme: Theme) => ({
       maxWidth: theme.breakpoints.values.lg,
     },
   },
-}));
+}))
 
 const Footer: React.FC = () => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <BottomNavigation className={classes.root}>
-      <Flex alignItems={['flex-start', 'center']} justifyContent="space-between" flexDirection={['column', 'row']} className={classes.inner}>
+      <Flex
+        alignItems={['flex-start', 'center']}
+        justifyContent="space-between"
+        flexDirection={['column', 'row']}
+        className={classes.inner}>
         <FooterLeft />
         <FooterRight />
       </Flex>
     </BottomNavigation>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

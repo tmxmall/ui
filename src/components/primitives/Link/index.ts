@@ -1,5 +1,1 @@
-/**
- * @prettier
- */
-
-export { default } from './Link';
+export { default } from './Link'

@@ -1,9 +1,5 @@
-/**
- * @prettier
- */
-
-import React from 'react';
-import { TextFieldProps, default as TextFieldMui } from '@material-ui/core/TextField';
+import React from 'react'
+import { TextFieldProps, default as TextFieldMui } from '@material-ui/core/TextField'
 
 const TextField: React.FC<TextFieldProps> = ({ InputProps, classes, ...props }) => (
   <TextFieldMui
@@ -13,6 +9,6 @@ const TextField: React.FC<TextFieldProps> = ({ InputProps, classes, ...props }) 
       classes,
     }}
   />
-);
+)
 
-export default TextField;
+export default TextField

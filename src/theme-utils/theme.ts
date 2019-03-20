@@ -1,8 +1,4 @@
-/**
- * @prettier
- */
-
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles'
 
 const colors = {
   primary: '#4b5e40',
@@ -12,11 +8,11 @@ const colors = {
   disabled: '#999999',
   divider: '#e3e3e3',
   text: '#3c3c3c',
-};
+}
 
-export type Colors = keyof typeof colors;
+export type Colors = keyof typeof colors
 
-const spacing = 4;
+const spacing = 4
 
 const spacings = {
   none: 0,
@@ -28,26 +24,26 @@ const spacings = {
   peta: spacing * 6,
   exa: spacing * 7,
   zetta: spacing * 8,
-};
+}
 
-export type Spacings = keyof typeof spacings;
+export type Spacings = keyof typeof spacings
 
 export const theme = createMuiTheme({
   colors,
   spacing,
   spacings,
-});
+})
 
-export type Theme = keyof typeof theme;
+export type Theme = keyof typeof theme
 
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
-    spacings: typeof spacings;
-    colors: typeof colors;
+    spacings: typeof spacings
+    colors: typeof colors
   }
 
   interface ThemeOptions {
-    spacings: typeof spacings;
-    colors: typeof colors;
+    spacings: typeof spacings
+    colors: typeof colors
   }
 }

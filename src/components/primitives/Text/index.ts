@@ -1,5 +1,1 @@
-/**
- * @prettier
- */
-
-export { default } from './Text';
+export { default } from './Text'

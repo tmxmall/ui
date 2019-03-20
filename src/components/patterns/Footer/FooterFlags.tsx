@@ -1,15 +1,11 @@
-/**
- * @prettier
- */
+import React, { useState } from 'react'
+import Fade from '@material-ui/core/Fade'
 
-import React, { useState } from 'react';
-import Fade from '@material-ui/core/Fade';
-
-import Flex from '../../primitives/Flex';
-import Icon from '../../primitives/Icon';
+import Flex from '../../primitives/Flex'
+import Icon from '../../primitives/Icon'
 
 const FooterToolTip: React.FC = () => {
-  const [showFlags, setShowFlags] = useState(false);
+  const [showFlags, setShowFlags] = useState(false)
   return (
     <Flex spacingX="byte">
       <Icon name="earth" size="md" onMouseOver={() => setShowFlags(true)} onMouseLeave={() => setShowFlags(false)} />
@@ -27,7 +23,7 @@ const FooterToolTip: React.FC = () => {
         </div>
       </Fade>
     </Flex>
-  );
-};
+  )
+}
 
-export default FooterToolTip;
+export default FooterToolTip

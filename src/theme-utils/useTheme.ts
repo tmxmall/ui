@@ -1,11 +1,7 @@
-/**
- * @prettier
- */
+import { useTheme as muiUseTheme } from '@material-ui/styles'
 
-import { useTheme as muiUseTheme } from '@material-ui/styles';
+import { Theme } from './theme'
 
-import { Theme } from './theme';
+const useTheme = () => muiUseTheme<Theme>()
 
-const useTheme = () => muiUseTheme<Theme>();
-
-export default useTheme;
+export default useTheme

@@ -1,16 +1,12 @@
-/**
- * @prettier
- */
+import React from 'react'
 
-import React from 'react';
-
-import Flex from '../../primitives/Flex';
-import Text from '../../primitives/Text';
-import Icon from '../../primitives/Icon';
+import Flex from '../../primitives/Flex'
+import Text from '../../primitives/Text'
+import Icon from '../../primitives/Icon'
 
 // @ts-ignore
-import { version } from '../../../../package.json';
-import { goToVerdaccioWebsite } from '../../../utils/windows.js';
+import { version } from '../../../../package.json'
+import { goToVerdaccioWebsite } from '../../../utils/windows.js'
 
 const FooterRight: React.FC = () => (
   <Flex alignItems="center" spacingX="byte">
@@ -22,6 +18,6 @@ const FooterRight: React.FC = () => (
       {`/ ${version}`}
     </Text>
   </Flex>
-);
+)
 
-export default FooterRight;
+export default FooterRight

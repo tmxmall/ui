@@ -1,5 +1,1 @@
-/**
- * @prettier
- */
-
-export { default } from './TextField';
+export { default } from './TextField'

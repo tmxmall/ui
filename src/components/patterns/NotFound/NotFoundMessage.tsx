@@ -1,12 +1,8 @@
-/**
- * @prettier
- */
-
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import Typography from '@material-ui/core/Typography'
 
 interface Props {
-  className?: string;
+  className?: string
 }
 // TODO -> add translations
 const NotFoundMessage: React.FC<Props> = ({ className }) => (
@@ -14,6 +10,6 @@ const NotFoundMessage: React.FC<Props> = ({ className }) => (
     <div>The page you're looking for doesn't exist.</div>
     <div>Perhaps these links will help find what you are looking for:</div>
   </Typography>
-);
+)
 
-export default NotFoundMessage;
+export default NotFoundMessage

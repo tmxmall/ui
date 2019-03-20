@@ -1,22 +1,9 @@
-/**
- * @prettier
- */
+import React from 'react'
 
-import React from 'react';
-
-import PackageList from '../components/patterns/PackageList';
-
-interface Props {
-  packages: Array<any>;
-  isUserLoggedIn?: boolean;
-}
-
-const Home: React.FC<Props> = ({ packages, isUserLoggedIn }): React.ReactElement<HTMLDivElement> => (
-  <PackageList packages={packages} isUserLoggedIn={isUserLoggedIn} />
-);
+const Home: React.FC = (): React.ReactElement<HTMLDivElement> => <div>Home Page</div>
 
 Home.defaultProps = {
   isUserLoggedIn: false,
-};
+}
 
-export default Home;
+export default Home

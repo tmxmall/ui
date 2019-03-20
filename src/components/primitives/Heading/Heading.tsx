@@ -1,19 +1,15 @@
-/**
- * @prettier
- */
+import React from 'react'
+import classnames from 'classnames'
+import { Theme } from '@material-ui/core/styles'
+import Typography, { TypographyProps } from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/styles'
 
-import React from 'react';
-import classnames from 'classnames';
-import { Theme } from '@material-ui/core/styles';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
-
-import { Colors } from '../../../theme-utils/theme';
+import { Colors } from '../../../theme-utils/theme'
 
 interface Props extends Omit<TypographyProps, 'color'> {
-  bold?: boolean;
-  color?: Colors;
-  className?: string;
+  bold?: boolean
+  color?: Colors
+  className?: string
 }
 
 const useStyles = makeStyles(({ colors }: Theme) => ({
@@ -21,16 +17,16 @@ const useStyles = makeStyles(({ colors }: Theme) => ({
     fontWeight: bold ? 700 : 400,
     color: colors[color!],
   }),
-}));
+}))
 
 const Heading: React.FC<Props> = ({ className, bold, color, ...props }) => {
-  const classes = useStyles(props);
-  return <Typography className={classnames(className, classes.headingClass)} {...props} />;
-};
+  const classes = useStyles(props)
+  return <Typography className={classnames(className, classes.headingClass)} {...props} />
+}
 
 Heading.defaultProps = {
   bold: false,
   color: 'primary',
-};
+}
 
-export default Heading;
+export default Heading

@@ -1,17 +1,13 @@
-/**
- * @prettier
- */
+import React from 'react'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/styles'
+import { Theme } from '@material-ui/core/styles'
 
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
-import { Theme } from '@material-ui/core/styles';
+import Flex from '../../primitives/Flex'
 
-import Flex from '../../primitives/Flex';
-
-import NotFoundGoToList from './NotFoundGoToList';
-import NotFoundMessage from './NotFoundMessage';
-import PackageImg from './img/package.svg';
+import NotFoundGoToList from './NotFoundGoToList'
+import NotFoundMessage from './NotFoundMessage'
+import PackageImg from './img/package.svg'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -24,10 +20,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   heading: {
     color: theme.colors.primary,
   },
-}));
+}))
 
 const NotFound: React.FC = () => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <Flex flexDirection="column" alignItems="center" justifyContent="center" className={classes.root}>
       <img className={classes.img} alt="404 - Page not found" src={PackageImg} />
@@ -39,7 +35,7 @@ const NotFound: React.FC = () => {
       </Flex>
       <NotFoundGoToList />
     </Flex>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

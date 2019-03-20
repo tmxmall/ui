@@ -1,20 +1,17 @@
-/**
- * @prettier
- */
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import 'typeface-roboto'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@material-ui/styles'
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import 'typeface-roboto';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/styles';
+import App from './app'
+import { theme } from './theme-utils/theme'
 
-import App from './app';
-import { theme } from './theme-utils/theme';
-
-const rootNode = document.getElementById('root');
+const rootNode = document.getElementById('root')
 
 const renderApp = () => {
+  console.log('oi')
   ReactDOM.render(
     <AppContainer>
       <ThemeProvider theme={theme}>
@@ -22,14 +19,14 @@ const renderApp = () => {
         <App />
       </ThemeProvider>
     </AppContainer>,
-    rootNode
-  );
-};
+    rootNode,
+  )
+}
 
-renderApp();
+renderApp()
 
 if (module.hot) {
   module.hot.accept('./app', () => {
-    renderApp();
-  });
+    renderApp()
+  })
 }

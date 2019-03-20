@@ -1,13 +1,9 @@
-/**
- * @prettier
- */
+import React from 'react'
 
-import React from 'react';
+import Flex from '../../primitives/Flex'
+import Text from '../../primitives/Text'
 
-import Flex from '../../primitives/Flex';
-import Text from '../../primitives/Text';
-
-import FooterFlags from './FooterFlags';
+import FooterFlags from './FooterFlags'
 
 const FooterLeft: React.FC = () => (
   <Flex alignItems="center" spacingX="byte">
@@ -22,6 +18,6 @@ const FooterLeft: React.FC = () => (
     </Flex>
     <FooterFlags />
   </Flex>
-);
+)
 
-export default FooterLeft;
+export default FooterLeft

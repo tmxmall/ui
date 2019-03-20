@@ -1,16 +1,10 @@
-/**
- * @prettier
- */
-
-// @ts-ignore
-import React from 'react';
-import logo from './img/logo.svg';
-import { makeStyles } from '@material-ui/styles';
-import { Theme } from '@material-ui/core/styles';
-import { url } from 'inspector';
+import React from 'react'
+import logo from './img/logo.svg'
+import { makeStyles } from '@material-ui/styles'
+import { Theme } from '@material-ui/core/styles'
 
 interface Props {
-  md?: boolean;
+  md?: boolean
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -29,11 +23,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       height: 90,
     },
   },
-}));
+}))
 
 const Logo: React.FC<Props> = () => {
-  const classes = useStyles();
-  return <div className={classes.container} />;
-};
+  const classes = useStyles()
+  return <div className={classes.container} />
+}
 
-export default Logo;
+export default Logo
