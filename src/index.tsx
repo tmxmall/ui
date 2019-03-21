@@ -11,7 +11,6 @@ import { theme } from './theme-utils/theme'
 const rootNode = document.getElementById('root')
 
 const renderApp = () => {
-  console.log('oi')
   ReactDOM.render(
     <AppContainer>
       <ThemeProvider theme={theme}>
