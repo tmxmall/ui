@@ -20,14 +20,29 @@ interface Props {
   spacingX?: Spacings
   spacingY?: Spacings
   className?: string
+  fullWidth?: boolean
 }
 
 const useStyles = makeStyles(({ spacings }: Theme) => ({
-  flexClass: ({ display, justifyContent, alignItems, flexDirection, flexGrow, spacingX, spacingY }: Props) => ({
+  flexClass: ({
+    display,
+    justifyContent,
+    alignItems,
+    flexDirection,
+    flexGrow,
+    spacingX,
+    spacingY,
+    fullWidth,
+  }: Props) => ({
     '& > *': {
       marginRight: spacings[spacingX!],
       marginBottom: spacings[spacingY!],
     },
+    '& > *:last-child': {
+      marginRight: spacings.none,
+      marginBottom: spacings.none,
+    },
+    width: fullWidth ? '100%' : 'auto',
     ...responsiveProp('flexGrow', flexGrow),
     ...responsiveProp('display', display),
     ...responsiveProp('justifyContent', justifyContent),
@@ -49,6 +64,7 @@ Flex.defaultProps = {
   flexDirection: 'row',
   spacingX: 'none',
   spacingY: 'none',
+  fullWidth: false,
 }
 
 export default Flex

@@ -1,35 +1,43 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/styles'
+import Svg, { SvgIconProps } from '@material-ui/core/SvgIcon'
+import { Sizing } from '../../../theme-utils/theme'
+import { Theme } from '@material-ui/core/styles'
+import responsiveProp from '../../../theme-utils/responsive-prop'
+import resolveSizing from '../../../theme-utils/resolve-sizing'
 
-import Austria from './icons/Austria'
-import Brazil from './icons/Brazil'
-import China from './icons/China'
-import Earth from './icons/Earth'
-import India from './icons/India'
-import Spain from './icons/Spain'
-import Verdaccio from './icons/Verdaccio'
-import Pakistan from './icons/Pakistan'
-import Nicaragua from './icons/Nicaragua'
-import License from './icons/License'
+import getIcon from './get-icon'
 
-const icons = {
-  austria: <Austria />,
-  brazil: <Brazil />,
-  china: <China />,
-  earth: <Earth />,
-  india: <India />,
-  spain: <Spain />,
-  nicaragua: <Nicaragua />,
-  verdaccio: <Verdaccio />,
-  pakistan: <Pakistan />,
-  license: <License />,
+const iconType = {
+  verdaccio: 'verdaccio',
+  license: 'license',
 }
 
-type Icon = keyof typeof icons
+export type IconType = keyof typeof iconType
 
-interface Props {
-  icon: Icon
+export interface IconProps extends SvgIconProps {
+  icon: IconType
+  size?: Sizing | Array<Sizing>
 }
 
-const Icon: React.FC<Props> = ({ icon }) => icons[icon]
+const useStyles = makeStyles((theme: Theme) => ({
+  iconClass: ({ size }: Pick<IconProps, 'size'>) => ({
+    ...responsiveProp('width', resolveSizing(theme)(size)),
+  }),
+}))
+
+const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
+  const classes = useStyles(props)
+  const { viewBox, content } = getIcon(icon)
+  return (
+    <Svg viewBox={viewBox} {...props} className={classes.iconClass}>
+      {content}
+    </Svg>
+  )
+}
+
+Icon.defaultProps = {
+  size: 'byte',
+}
 
 export default Icon

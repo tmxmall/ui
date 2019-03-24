@@ -9,7 +9,7 @@ import Home from './pages/Home'
 
 const App: React.FC = () => (
   <>
-    {/* <Header /> */}
+    <Header />
     {/* <Switch>
       <Route exact path="/" component={() => <Home />} />
       <Route component={NotFound} />

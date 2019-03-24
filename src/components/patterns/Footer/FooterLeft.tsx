@@ -4,6 +4,7 @@ import Flex from '../../primitives/Flex'
 import Text from '../../primitives/Text'
 
 import FooterFlags from './FooterFlags'
+import FooterIcon from './FooterIcon'
 
 const FooterLeft: React.FC = () => (
   <Flex alignItems="center" spacingX="byte">
@@ -11,7 +12,7 @@ const FooterLeft: React.FC = () => (
       <Text variant="subtitle2" color="disabled">
         Made with
       </Text>
-      <Text color="red">❤</Text>
+      <FooterIcon icon="love" />
       <Text variant="subtitle2" color="disabled">
         on
       </Text>
