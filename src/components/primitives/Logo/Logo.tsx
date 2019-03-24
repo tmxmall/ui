@@ -2,10 +2,6 @@ import React from 'react'
 import logo from './img/logo.svg'
 import { makeStyles } from '@material-ui/styles'
 
-interface Props {
-  md?: boolean
-}
-
 const useStyles = makeStyles({
   logoClass: {
     display: 'inline-block',
@@ -20,7 +16,7 @@ const useStyles = makeStyles({
   },
 })
 
-const Logo: React.FC<Props> = () => {
+const Logo: React.FC = () => {
   const classes = useStyles()
   return <div className={classes.logoClass} />
 }
