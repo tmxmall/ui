@@ -9,8 +9,12 @@ import Logo from '../../primitives/Logo'
 import Button from '../../primitives/Button'
 import Flex from '../../primitives/Flex'
 
-import GoToDocumentation from './GoToDocumentation'
-import RegistrationInformation from './RegistrationInformation'
+import HeaderToolTip from './HeaderToolTip'
+import HeaderMenu from './HeaderMenu'
+
+interface Props {
+  username: string
+}
 
 const useStyles = makeStyles(({ colors }: Theme) => ({
   headerClass: {
@@ -19,7 +23,7 @@ const useStyles = makeStyles(({ colors }: Theme) => ({
   },
 }))
 
-const Header: React.FC = () => {
+const Header: React.FC<Props> = ({ username }) => {
   const classes = useStyles()
   const [openInfoDialog, setOpenInfoDialog] = useState(false)
   return (
@@ -32,9 +36,10 @@ const Header: React.FC = () => {
             </Link>
           </Flex>
           <Flex alignItems="center">
-            <GoToDocumentation />
-            <RegistrationInformation />
-            <Button onClick={() => setOpenInfoDialog(true)}>Login</Button>
+            <HeaderToolTip icon="search" />
+            <HeaderToolTip icon="help" />
+            <HeaderToolTip icon="info" />
+            {username ? 'oi' : <Button onClick={() => setOpenInfoDialog(true)}>Login</Button>}
           </Flex>
         </Flex>
       </Toolbar>

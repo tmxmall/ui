@@ -24,7 +24,7 @@ const CopyToClipBoard: React.FC<Props> = ({ text }) => {
   const classes = useStyles()
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <ClipBoardCopyText className={classes.textClass}>{text}</ClipBoardCopyText>
+      <div className={classes.textClass}>{text}</div>
       <CopyToClipBoardToolTip text={text} />
     </Flex>
   )

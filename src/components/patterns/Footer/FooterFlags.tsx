@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   footerToolTipInnerClass: {
     position: 'absolute',
-    backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.background,
     marginLeft: theme.spacings.tera,
     paddingRight: theme.spacings.mega,
   },
