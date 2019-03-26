@@ -1,36 +1,19 @@
 import React from 'react'
-import Help from '@material-ui/icons/Help'
-import Info from '@material-ui/icons/Info'
-import Search from '@material-ui/icons/Search'
+import IconButton from '@material-ui/core/IconButton'
 
-import IconButton from '../../primitives/IconButton'
+import HeaderToolTipIcon from './HeaderToolTipIcon'
+
+export type IconType = 'help' | 'info' | 'search'
 
 interface Props {
-  icon: 'help' | 'info' | 'search'
-  onClick?: () => void
+  icon: IconType
+  onClick: () => void
 }
 
-const HeaderToolTip: React.FC<Props> = ({ icon, onClick }) => {
-  switch (icon) {
-    case 'help':
-      return (
-        <IconButton color="inherit">
-          <Help />
-        </IconButton>
-      )
-    case 'info':
-      return (
-        <IconButton color="inherit" onClick={onClick}>
-          <Info />
-        </IconButton>
-      )
-    case 'search':
-      return (
-        <IconButton color="inherit" onClick={onClick}>
-          <Search />
-        </IconButton>
-      )
-  }
-}
+const HeaderToolTip: React.FC<Props> = ({ icon, onClick }) => (
+  <IconButton color="inherit" onClick={onClick}>
+    <HeaderToolTipIcon icon={icon} />
+  </IconButton>
+)
 
 export default HeaderToolTip

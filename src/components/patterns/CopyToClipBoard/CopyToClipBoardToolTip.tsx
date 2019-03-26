@@ -9,14 +9,12 @@ interface Props {
   text: string
 }
 
-const CopyToClipBoardToolTip: React.FC<Props> = ({ text }) => {
-  return (
-    <Tooltip disableFocusListener title="Copy to ClipBoard">
-      <IconButton onClick={() => copyToClipBoardUtility(text)}>
-        <FileCopy />
-      </IconButton>
-    </Tooltip>
-  )
-}
+const CopyToClipBoardToolTip: React.FC<Props> = ({ text }) => (
+  <Tooltip disableFocusListener title="Copy to ClipBoard">
+    <IconButton onClick={() => copyToClipBoardUtility(text)}>
+      <FileCopy />
+    </IconButton>
+  </Tooltip>
+)
 
 export default CopyToClipBoardToolTip
