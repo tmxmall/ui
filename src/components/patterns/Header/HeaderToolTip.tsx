@@ -7,7 +7,7 @@ export type IconType = 'help' | 'info' | 'search'
 
 interface Props {
   icon: IconType
-  onClick: () => void
+  onClick?: () => void
 }
 
 const HeaderToolTip: React.FC<Props> = ({ icon, onClick }) => (

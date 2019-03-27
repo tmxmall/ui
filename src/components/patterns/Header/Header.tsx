@@ -4,16 +4,16 @@ import Toolbar from '@material-ui/core/Toolbar'
 import { makeStyles } from '@material-ui/styles'
 import { Theme } from '@material-ui/core/styles'
 
-import Link from '../../primitives/Link'
-import Logo from '../../primitives/Logo'
-import Button from '../../primitives/Button'
+import RegistryInfoDialog from '../RegistryInfoDialog'
 import Flex from '../../primitives/Flex'
 
-import HeaderToolTip from './HeaderToolTip'
-import HeaderMenu from './HeaderMenu'
+import HeaderLeft from './HeaderLeft'
+import HeaderRight from './HeaderRight'
 
 interface Props {
   username: string
+  registryUrl: string
+  scope: string
 }
 
 const useStyles = makeStyles(({ colors }: Theme) => ({
@@ -23,25 +23,23 @@ const useStyles = makeStyles(({ colors }: Theme) => ({
   },
 }))
 
-const Header: React.FC<Props> = ({ username }) => {
+const Header: React.FC<Props> = ({ username, scope }) => {
   const classes = useStyles()
   const [openInfoDialog, setOpenInfoDialog] = useState(false)
+
   return (
     <AppBar position="static" color="default" className={classes.headerClass}>
       <Toolbar>
         <Flex alignItems="center" justifyContent="space-between" fullWidth>
-          <Flex alignItems="center">
-            <Link to="/">
-              <Logo />
-            </Link>
-          </Flex>
-          <Flex alignItems="center">
-            <HeaderToolTip icon="search" />
-            <HeaderToolTip icon="help" />
-            <HeaderToolTip icon="info" />
-            {username ? 'oi' : <Button onClick={() => setOpenInfoDialog(true)}>Login</Button>}
-          </Flex>
+          <HeaderLeft />
+          <HeaderRight username={username} onOpenInfoDialog={() => setOpenInfoDialog(true)} />
         </Flex>
+        <RegistryInfoDialog
+          open={openInfoDialog}
+          registryUrl=""
+          onClose={() => setOpenInfoDialog(false)}
+          scope={scope}
+        />
       </Toolbar>
     </AppBar>
   )

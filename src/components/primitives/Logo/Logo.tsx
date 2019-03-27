@@ -16,8 +16,16 @@ const useStyles = makeStyles({
   },
 })
 
-const Logo: React.FC = () => {
+interface Props {
+  logo?: string
+}
+
+// TODO -> The logo should be an object with name and path
+const Logo: React.FC<Props> = ({ logo }) => {
   const classes = useStyles()
+  if (logo) {
+    return <img src={logo} height={40} />
+  }
   return <div className={classes.logoClass} />
 }
 
