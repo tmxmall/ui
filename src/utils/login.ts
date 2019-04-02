@@ -1,3 +1,4 @@
+//@ts-ignore
 import API from './api'
 
 export async function makeLogin(username: string, password: string) {
@@ -8,9 +9,5 @@ export async function makeLogin(username: string, password: string) {
       'Content-Type': 'json',
     },
   })
-  const result = {
-    username: response.username,
-    token: response.token,
-  }
-  return result
+  return response
 }

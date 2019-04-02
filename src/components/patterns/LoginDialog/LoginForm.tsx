@@ -4,6 +4,10 @@ import PyroForm from 'pyro-form'
 import Flex from '../../primitives/Flex'
 import Button from '../../primitives/Button'
 import TextField from '../../primitives/TextField'
+// @ts-ignore
+import storage from '../../../utils/storage'
+// @ts-ignore
+import makeLogin from '../../../utils/login'
 
 interface InitialValues {
   username: string
@@ -27,16 +31,13 @@ const LoginForm: React.FC = () => {
     }
   }
 
-  const handleSubmit = async ({ username, password }: InitialValues) => {
-    const { username, token, error } = await makeLogin(username, password)
-
-    if (username && token) {
-      this.setLoggedUser(username, token)
+  const handleSubmit = async (values: InitialValues) => {
+    try {
+      const { username, token } = await makeLogin(values.username, values.password)
       storage.setItem('username', username)
       storage.setItem('token', token)
-    }
-
-    if (error) {
+    } catch (error) {
+      console.log('error', error)
       setError(error)
     }
   }
@@ -45,6 +46,7 @@ const LoginForm: React.FC = () => {
     <PyroForm initialValues={initialValues} onValidate={handleValidate} onSubmit={handleSubmit}>
       {({ hasErrors, handleSubmit: onSubmit }) => (
         <form onSubmit={onSubmit}>
+          {error}
           <Flex flexDirection="column">
             <TextField name="username" label="Username" fullWidth />
             <TextField name="password" label="Password" type="password" fullWidth />
