@@ -6,20 +6,20 @@ import { makeStyles } from '@material-ui/styles'
 
 import { Colors } from '../../../theme-utils/theme'
 
-interface Props extends Omit<TypographyProps, 'color'> {
+export interface HeadingProps extends Omit<TypographyProps, 'color'> {
   bold?: boolean
   color?: Colors
   className?: string
 }
 
 const useStyles = makeStyles(({ colors }: Theme) => ({
-  headingClass: ({ bold, color }: Props) => ({
+  headingClass: ({ bold, color }: HeadingProps) => ({
     fontWeight: bold ? 700 : 400,
     color: colors[color!],
   }),
 }))
 
-const Heading: React.FC<Props> = ({ className, bold, color, ...props }) => {
+const Heading: React.FC<HeadingProps> = ({ className, bold, color, ...props }) => {
   const classes = useStyles(props)
   return <Typography className={classnames(className, classes.headingClass)} {...props} />
 }

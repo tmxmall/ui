@@ -3,6 +3,7 @@ import { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/styles'
 
 import Flex from '../../primitives/Flex'
+import Text from '../../primitives/Text'
 
 import CopyToClipBoardToolTip from './CopyToClipBoardToolTip'
 
@@ -24,7 +25,7 @@ const CopyToClipBoard: React.FC<Props> = ({ text }) => {
   const classes = useStyles()
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <div className={classes.textClass}>{text}</div>
+      <Text className={classes.textClass}>{text}</Text>
       <CopyToClipBoardToolTip text={text} />
     </Flex>
   )

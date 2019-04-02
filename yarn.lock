@@ -8766,6 +8766,11 @@ pupa@^1.0.0:
   resolved "https://registry.yarnpkg.com/pupa/-/pupa-1.0.0.tgz#9a9568a5af7e657b8462a6e9d5328743560ceff6"
   integrity sha1-mpVopa9+ZXuEYqbp1TKHQ1YM7/Y=
 
+pyro-form@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/pyro-form/-/pyro-form-2.1.0.tgz#7f21f994d1aad0075193ce12b55ffdc92dda9bcd"
+  integrity sha512-4OtQBrLsBpSPjRpj5Az9lUhEIQBTaTWqtVOhAENUDkL4VHxKi+pyFmepcuiNoJzhqzCK/J5laXQQkntKgV4Lcg==
+
 q@^1.1.2, q@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"

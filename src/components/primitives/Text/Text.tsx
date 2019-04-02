@@ -22,7 +22,7 @@ const Text: React.FC<Props> = ({ is, color, ...props }) => {
 }
 
 Text.defaultProps = {
-  color: 'primary',
+  color: 'text',
 }
 
 export default Text

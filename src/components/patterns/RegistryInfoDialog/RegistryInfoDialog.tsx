@@ -7,6 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent'
 
 import RegistryInfoContent from './RegistryInfoContent'
 
+import Text from '../../primitives/Text'
+
 interface Props {
   open: boolean
   onClose: () => void
@@ -16,7 +18,9 @@ interface Props {
 
 const RegistryInfoDialog: React.FC<Props> = ({ onClose, open, ...props }) => (
   <Dialog onClose={onClose} open={open}>
-    <DialogTitle disableTypography>Register Info</DialogTitle>
+    <DialogTitle disableTypography>
+      <Text>Register Info</Text>
+    </DialogTitle>
     <DialogContent>
       <RegistryInfoContent {...props} />
     </DialogContent>

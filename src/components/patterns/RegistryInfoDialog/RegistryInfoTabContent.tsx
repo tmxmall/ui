@@ -10,7 +10,7 @@ import getCLI from './get-cli'
 import { NODE_MANAGER } from './RegistryInfoContent'
 
 interface Props {
-  type: NODE_MANAGER
+  tabPosition: number
   registryUrl: string
   scope: string
 }
@@ -22,10 +22,10 @@ const useStyles = makeStyles(({ spacings }: Theme) => ({
   },
 }))
 
-const RegistryInfoTabContent: React.FC<Props> = ({ type, registryUrl, scope }) => {
+const RegistryInfoTabContent: React.FC<Props> = ({ tabPosition, registryUrl, scope }) => {
   const classes = useStyles()
-  switch (type) {
-    case NODE_MANAGER.NPM:
+  switch (tabPosition) {
+    case 0:
       return (
         <Typography component="div" className={classes.root}>
           <CopyToClipBoard text={getCLI('config', NODE_MANAGER.NPM, registryUrl, scope)} />
@@ -33,7 +33,7 @@ const RegistryInfoTabContent: React.FC<Props> = ({ type, registryUrl, scope }) =
           <CopyToClipBoard text={getCLI('password', NODE_MANAGER.NPM, registryUrl)} />
         </Typography>
       )
-    case NODE_MANAGER.PNPM:
+    case 1:
       return (
         <Typography component="div" className={classes.root}>
           <CopyToClipBoard text={getCLI('config', NODE_MANAGER.PNPM, registryUrl, scope)} />
@@ -41,12 +41,14 @@ const RegistryInfoTabContent: React.FC<Props> = ({ type, registryUrl, scope }) =
           <CopyToClipBoard text={getCLI('password', NODE_MANAGER.PNPM, registryUrl)} />
         </Typography>
       )
-    case NODE_MANAGER.YARN:
+    case 2:
       return (
         <Typography component="div" className={classes.root}>
           <CopyToClipBoard text={getCLI('config', `${NODE_MANAGER.YARN} config set`, registryUrl, scope)} />
         </Typography>
       )
+    default:
+      return null
   }
 }
 

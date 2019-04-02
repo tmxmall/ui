@@ -4,11 +4,11 @@ import Toolbar from '@material-ui/core/Toolbar'
 import { makeStyles } from '@material-ui/styles'
 import { Theme } from '@material-ui/core/styles'
 
-import RegistryInfoDialog from '../RegistryInfoDialog'
 import Flex from '../../primitives/Flex'
 
 import HeaderLeft from './HeaderLeft'
 import HeaderRight from './HeaderRight'
+import HeaderDialog from './HeaderDialog'
 
 interface Props {
   username: string
@@ -25,21 +25,20 @@ const useStyles = makeStyles(({ colors }: Theme) => ({
 
 const Header: React.FC<Props> = ({ username, scope }) => {
   const classes = useStyles()
-  const [openInfoDialog, setOpenInfoDialog] = useState(false)
+  const [dialog, setDialog] = useState<number | undefined>(undefined)
+
+  const handleOpenDialog = (dialog: number) => {
+    setDialog(dialog)
+  }
 
   return (
     <AppBar position="static" color="default" className={classes.headerClass}>
       <Toolbar>
         <Flex alignItems="center" justifyContent="space-between" fullWidth>
           <HeaderLeft />
-          <HeaderRight username={username} onOpenInfoDialog={() => setOpenInfoDialog(true)} />
+          <HeaderRight username={username} onOpenDialog={handleOpenDialog} />
         </Flex>
-        <RegistryInfoDialog
-          open={openInfoDialog}
-          registryUrl=""
-          onClose={() => setOpenInfoDialog(false)}
-          scope={scope}
-        />
+        <HeaderDialog dialog={dialog} scope={scope} onClose={() => setDialog(undefined)} />
       </Toolbar>
     </AppBar>
   )

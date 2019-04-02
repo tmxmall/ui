@@ -53,6 +53,7 @@
     "ora": "1.4.0",
     "prettier": "1.14.3",
     "prop-types": "15.6.2",
+    "pyro-form": "^2.1.0",
     "react-autosuggest": "9.4.2",
     "react-hot-loader": "^4.7.1",
     "react-router": "4.3.1",

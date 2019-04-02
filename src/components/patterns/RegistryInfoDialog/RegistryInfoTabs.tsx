@@ -6,7 +6,7 @@ import { NODE_MANAGER } from './RegistryInfoContent'
 
 interface Props {
   onChange: (event: React.ChangeEvent<HTMLElement>, value: number) => void
-  tabPosition: keyof NODE_MANAGER.NPM
+  tabPosition: number
 }
 
 const RegistryInfoTabs: React.FC<Props> = ({ onChange, tabPosition }) => (

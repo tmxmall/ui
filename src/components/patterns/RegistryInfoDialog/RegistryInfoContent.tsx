@@ -15,17 +15,17 @@ interface Props {
 }
 
 const RegistryInfoContent: React.FC<Props> = ({ scope, registryUrl }) => {
-  const [tabPosition, setTabPosition] = React.useState(NODE_MANAGER.NPM)
+  const [tabPosition, setTabPosition] = React.useState(0)
 
-  const handleChange = (event: React.ChangeEvent<HTMLElement>) => {
-    const manager = event.target.innerHTML.toUpperCase()
-    setTabPosition(NODE_MANAGER[manager as keyof typeof NODE_MANAGER])
+  // @ts-ignore
+  const handleChange = (event: React.ChangeEvent<HTMLElement>, value: number) => {
+    setTabPosition(value)
   }
 
   return (
     <>
       <RegistryInfoTabs onChange={handleChange} tabPosition={tabPosition} />
-      <RegistryInfoTabContent scope={scope} registryUrl={registryUrl} type={NODE_MANAGER.NPM} />
+      <RegistryInfoTabContent scope={scope} registryUrl={registryUrl} tabPosition={tabPosition} />
     </>
   )
 }
