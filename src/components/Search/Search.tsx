@@ -3,7 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as IconSearch } from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import debounce from 'lodash/debounce';
+import useDebounce from '../../utils/hooks/useDebounce';
 
 import API from '../../utils/api';
 import AutoComplete from '../AutoComplete';
@@ -154,7 +154,7 @@ export class Search extends Component<RouteComponentProps<{}>, State> {
         onChange={this.handleSearch}
         onCleanSuggestions={this.handlePackagesClearRequested}
         onClick={this.handleClickSearch}
-        onSuggestionsFetch={debounce(this.handleFetchPackages, CONSTANTS.API_DELAY)}
+        onSuggestionsFetch={useDebounce(this.handleFetchPackages, CONSTANTS.API_DELAY)}
         placeholder={CONSTANTS.PLACEHOLDER_TEXT}
         startAdornment={
           <InputAdornment position="start" style={{ color: colors.white }}>

@@ -35,6 +35,7 @@ export const Svg = styled('svg')`
 export const ImgWrapper = styled('span')`
   && {
     ${commonStyle};
+    text-transform: capitalize;
   }
 `;
 

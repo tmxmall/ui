@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import isNil from 'lodash/isNil';
 
 import storage from '../utils/storage';
 import { makeLogin, isTokenExpire } from '../utils/login';
@@ -70,7 +69,7 @@ export default class App extends Component<any, any> {
     // checks for token validity
     const token = storage.getItem('token');
     const username = storage.getItem('username');
-    if (isTokenExpire(token) || isNil(username)) {
+    if (isTokenExpire(token) || username === null || username === undefined) {
       this.handleLogout();
     } else {
       this.setState({

@@ -1,12 +1,9 @@
-import isString from 'lodash/isString';
-import isNumber from 'lodash/isNumber';
-import isEmpty from 'lodash/isEmpty';
 import { Base64 } from 'js-base64';
 import API from './api';
 import { HEADERS } from '../../lib/constants';
 
 export function isTokenExpire(token?: any) {
-    if (!isString(token)) {
+    if (typeof token !== "string") {
         return true;
     }
 
@@ -24,7 +21,7 @@ export function isTokenExpire(token?: any) {
         return true;
     }
 
-    if (!payload.exp || !isNumber(payload.exp)) {
+    if (!payload.exp || typeof payload.exp !== "number") {
         return true;
     }
     // Report as expire before (real expire time - 30s)
@@ -37,7 +34,7 @@ export function isTokenExpire(token?: any) {
 
 export async function makeLogin(username?: string, password?: string) {
     // checks isEmpty
-    if (isEmpty(username) || isEmpty(password)) {
+    if (!username || !password) {
         const error = {
             title: 'Unable to login',
             type: 'error',

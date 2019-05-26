@@ -1,4 +1,3 @@
-import isString from 'lodash/isString';
 import format from 'date-fns/format';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 
@@ -9,7 +8,7 @@ export const TIMEFORMAT = 'DD.MM.YYYY, HH:mm:ss';
  * @see https://docs.npmjs.com/files/package.json#license
  */
 export function formatLicense(license: any) {
-  if (isString(license)) {
+  if (typeof license === 'string') {
     return license;
   }
 
@@ -25,7 +24,7 @@ export function formatLicense(license: any) {
  * @see https://docs.npmjs.com/files/package.json#repository
  */
 export function formatRepository(repository: any) {
-  if (isString(repository)) {
+  if (typeof repository === 'string') {
     return repository;
   }
 

@@ -1,5 +1,4 @@
 import React, { MouseEvent } from 'react';
-import capitalize from 'lodash/capitalize';
 
 import { Svg, Img, ImgWrapper } from './styles';
 
@@ -64,16 +63,14 @@ export const Icons: IconsMap = {
 };
 
 const Icon: React.FC<Props> = ({ className, name, size = 'sm', img = false, pointer = false, ...props }) => {
-  // @ts-ignore
-  const title = capitalize(name);
   return img ? (
-    <ImgWrapper className={className} pointer={pointer} size={size} title={title} name={name} {...props}>
-      <Img alt={title} src={Icons[name]} />
+    <ImgWrapper className={className} pointer={pointer} size={size} title={name} name={name} {...props}>
+      <Img alt={String(name)} src={Icons[name]} />
     </ImgWrapper>
   ) : (
     // @ts-ignore
     <Svg className={className} pointer={pointer} size={size} {...props}>
-      <title>{title}</title>
+      <title>{name}</title>
       <use xlinkHref={`${Icons[name]}#${name}`} />
     </Svg>
   );
