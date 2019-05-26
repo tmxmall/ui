@@ -10,13 +10,7 @@ import { isEmail } from '../../utils/url';
 
 class Authors extends Component<any, any> {
   render() {
-    return (
-      <DetailContextConsumer>
-        {(context: any) => {
-          return context && context.packageMeta && this.renderAuthor(context.packageMeta);
-        }}
-      </DetailContextConsumer>
-    );
+    return <DetailContextConsumer>{(context: any) => context && context.packageMeta && this.renderAuthor(context.packageMeta)}</DetailContextConsumer>;
   }
 
   renderLinkForMail(email: string, avatarComponent: ReactNode, packageName: string, version: string) {
@@ -39,6 +33,7 @@ class Authors extends Component<any, any> {
     }
 
     const avatarComponent = <Avatar alt={author.name} src={author.avatar} />;
+
     return (
       <List subheader={<Heading variant={'subheading'}>{'Author'}</Heading>}>
         <AuthorListItem>

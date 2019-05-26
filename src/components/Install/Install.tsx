@@ -15,16 +15,10 @@ import { Heading, InstallItem, PackageMangerAvatar } from './styles';
 
 class Install extends Component {
   public render() {
-    return (
-      <DetailContextConsumer>
-        {(context: any) => {
-          return context && context.packageName && this.renderCopyCLI(context);
-        }}
-      </DetailContextConsumer>
-    );
+    return <DetailContextConsumer>{(context: any) => context && context.packageName && this.renderCopyCLI(context.packageName)}</DetailContextConsumer>;
   }
 
-  public renderCopyCLI = ({ packageName }: { packageName: string }) => {
+  public renderCopyCLI = (packageName: string) => {
     return (
       <>
         <List subheader={<Heading variant={'subheading'}>{'Installation'}</Heading>}>{this.renderListItems(packageName)}</List>

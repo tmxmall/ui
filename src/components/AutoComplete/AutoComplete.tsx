@@ -1,4 +1,4 @@
-import React, { KeyboardEvent } from 'react';
+import React, { ChangeEvent, MouseEvent, KeyboardEvent } from 'react';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
@@ -18,12 +18,12 @@ export interface Props {
   placeholder?: string;
   startAdornment?: any;
   disableUnderline?: boolean;
-  onChange?: (event: KeyboardEvent<HTMLInputElement>, { newValue, method }: { newValue: string; method: string }) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onSuggestionsFetch?: ({ value: string }) => Promise<void>;
   onCleanSuggestions?: () => void;
   onClick?: (event: KeyboardEvent<HTMLInputElement>, { suggestionValue, method }: { suggestionValue: any[]; method: string }) => void;
   onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onBlur?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onBlur?: (event: MouseEvent<HTMLInputElement>) => void;
 }
 
 const renderInputComponent = inputProps => {
@@ -99,7 +99,6 @@ const AutoComplete = ({
   suggestionsLoaded = false,
   suggestionsError = false,
 }: Props) => {
-  console.log('onSuggestionsFetch', onSuggestionsFetch);
   const autosuggestProps = {
     renderInputComponent,
     suggestions,

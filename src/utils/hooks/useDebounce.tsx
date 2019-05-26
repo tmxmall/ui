@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Please see: https://usehooks.com/useDebounce/
-function useDebounce<F extends Function>(value: F, delay: number): F {
+function useDebounce<V extends string>(value: V, delay: number): V {
   // State and setters for debounced value
   const [debouncedValue, setDebouncedValue] = useState(value);
 
