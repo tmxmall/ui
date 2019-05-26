@@ -150,7 +150,7 @@ describe('<Search /> component test', () => {
   describe('<Search /> component: mocks specific tests ', () => {
     beforeEach(() => {
       jest.resetModules();
-      jest.doMock('lodash/debounce', () => {
+      jest.doMock('debounce', () => {
         return function debounceMock(fn, delay) {
           return fn;
         };

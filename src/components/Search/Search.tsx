@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, Component } from 'react';
+import React, { KeyboardEvent, Component, useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as IconSearch } from '@material-ui/icons/Search';
@@ -8,14 +8,6 @@ import useDebounce from '../../utils/hooks/useDebounce';
 import API from '../../utils/api';
 import AutoComplete from '../AutoComplete';
 import colors from '../../utils/styles/colors';
-
-export interface State {
-  search: string;
-  suggestions: any[];
-  loading: boolean;
-  loaded: boolean;
-  error: boolean;
-}
 
 export type cancelAllSearchRequests = () => void;
 export type handlePackagesClearRequested = () => void;
@@ -33,82 +25,52 @@ const CONSTANTS = {
   ABORT_ERROR: 'AbortError',
 };
 
-export class Search extends Component<RouteComponentProps<{}>, State> {
-  requestList: Array<any>;
-
-  constructor(props: RouteComponentProps<{}>) {
-    super(props);
-    this.state = {
-      search: '',
-      suggestions: [],
-      // loading: A boolean value to indicate that request is in pending state.
-      loading: false,
-      // loaded: A boolean value to indicate that result has been loaded.
-      loaded: false,
-      // error: A boolean value to indicate API error.
-      error: false,
-    };
-    this.requestList = [];
-  }
+const Search: React.FC<RouteComponentProps<{}>> = ({ history }) => {
+  // error: A boolean value to indicate API error.
+  const [error, setError] = useState();
+  // loaded: A boolean value to indicate that result has been loaded.
+  const [loaded, setIsLoaded] = useState();
+  // isLoading: A boolean value to indicate that request is in pending state.
+  const [isLoading, setIsLoading] = useState();
+  const [suggestions, setSuggestions] = useState<Array<any>>([]);
+  const [search, setSearch] = useState('');
+  const [requestList, setRequestList] = useState<Array<any>>([]);
 
   /**
    * Cancel all the requests which are in pending state.
    */
-  cancelAllSearchRequests: cancelAllSearchRequests = () => {
-    this.requestList.forEach(request => request.abort());
-    this.requestList = [];
+  const cancelAllSearchRequests: cancelAllSearchRequests = () => {
+    requestList.forEach(request => request.abort());
+    setRequestList([]);
   };
 
   /**
    * Cancel all the request from list and make request list empty.
    */
-  handlePackagesClearRequested: handlePackagesClearRequested = () => {
-    this.setState({
-      suggestions: [],
-    });
+  const handlePackagesClearRequested: handlePackagesClearRequested = () => {
+    setSuggestions([]);
   };
 
   /**
    * onChange method for the input element.
    */
-  handleSearch: handleSearch = (event, { newValue, method }) => {
+  const handleSearch: handleSearch = (event, { newValue, method }) => {
     // stops event bubbling
     event.stopPropagation();
     if (method === 'type') {
       const value = newValue.trim();
-      this.setState(
-        {
-          search: value,
-          loading: true,
-          loaded: false,
-          error: false,
-        },
-        () => {
-          /**
-           * A use case where User keeps adding and removing value in input field,
-           * so we cancel all the existing requests when input is empty.
-           */
-          if (value.length === 0) {
-            this.cancelAllSearchRequests();
-          }
-        }
-      );
-    }
-  };
+      setSearch(search);
+      setIsLoaded(false);
+      setIsLoading(true);
+      setError(false);
 
-  /**
-   * When an user select any package by clicking or pressing return key.
-   */
-  handleClickSearch: handleClickSearch = (event, { suggestionValue, method }: any) => {
-    const { history } = this.props;
-    // stops event bubbling
-    event.stopPropagation();
-    switch (method) {
-      case 'click':
-      case 'enter':
-        this.setState({ search: '' });
-        history.push(`/-/web/detail/${suggestionValue}`);
-        break;
+      /**
+       * A use case where User keeps adding and removing value in input field,
+       * so we cancel all the existing requests when input is empty.
+       */
+      if (value.length === 0) {
+        cancelAllSearchRequests();
+      }
     }
   };
 
@@ -116,76 +78,82 @@ export class Search extends Component<RouteComponentProps<{}>, State> {
    * Fetch packages from API.
    * For AbortController see: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
    */
-  handleFetchPackages: handleFetchPackages = async ({ value }) => {
+  const handleFetchPackages: handleFetchPackages = async ({ value }) => {
     try {
       // @ts-ignore
       const controller = new window.AbortController();
       const signal = controller.signal;
       // Keep track of search requests.
-      this.requestList.push(controller);
+      setRequestList([...requestList, controller]);
       const suggestions = await API.request(`search/${encodeURIComponent(value)}`, 'GET', { signal });
-      // @ts-ignore
-      this.setState({
-        suggestions,
-        loaded: true,
-      });
+      setSuggestions(suggestions as Array<any>);
+      isLoading(true);
     } catch (error) {
       /**
        * AbortError is not the API error.
        * It means browser has cancelled the API request.
        */
       if (error.name === CONSTANTS.ABORT_ERROR) {
-        this.setState({ error: false, loaded: false });
+        setError(false);
+        setIsLoaded(false);
       } else {
-        this.setState({ error: true, loaded: false });
+        setError(true);
+        setIsLoaded(false);
       }
     } finally {
-      this.setState({ loading: false });
+      isLoading(false);
     }
   };
 
-  render() {
-    const { suggestions, search, loaded, loading, error } = this.state;
-
-    return (
-      <AutoComplete
-        color={colors.white}
-        onBlur={this.onBlur}
-        onChange={this.handleSearch}
-        onCleanSuggestions={this.handlePackagesClearRequested}
-        onClick={this.handleClickSearch}
-        onSuggestionsFetch={useDebounce(this.handleFetchPackages, CONSTANTS.API_DELAY)}
-        placeholder={CONSTANTS.PLACEHOLDER_TEXT}
-        startAdornment={
-          <InputAdornment position="start" style={{ color: colors.white }}>
-            <IconSearch />
-          </InputAdornment>
-        }
-        suggestions={suggestions}
-        suggestionsError={error}
-        suggestionsLoaded={loaded}
-        suggestionsLoading={loading}
-        value={search}
-      />
-    );
-  }
+  /**
+   * When an user select any package by clicking or pressing return key.
+   */
+  const handleClickSearch: handleClickSearch = (event, { suggestionValue, method }: any) => {
+    // stops event bubbling
+    event.stopPropagation();
+    switch (method) {
+      case 'click':
+      case 'enter':
+        setSearch('');
+        history.push(`/-/web/detail/${suggestionValue}`);
+        break;
+    }
+  };
 
   /**
    * As user focuses out from input, we cancel all the request from requestList
    * and set the API state parameters to default boolean values.
    */
-  onBlur: onBlur = event => {
+  const handleOnBlur: onBlur = event => {
     // stops event bubbling
     event.stopPropagation();
-    this.setState(
-      {
-        loaded: false,
-        loading: false,
-        error: false,
-      },
-      () => this.cancelAllSearchRequests()
-    );
+    setIsLoaded(false);
+    setIsLoading(false);
+    setError(false);
+    cancelAllSearchRequests();
   };
-}
+
+  return (
+    <AutoComplete
+      color={colors.white}
+      onBlur={handleOnBlur}
+      onChange={handleSearch}
+      onCleanSuggestions={handlePackagesClearRequested}
+      onClick={handleClickSearch}
+      onSuggestionsFetch={useDebounce(handleFetchPackages, CONSTANTS.API_DELAY)}
+      placeholder={CONSTANTS.PLACEHOLDER_TEXT}
+      startAdornment={
+        <InputAdornment position="start" style={{ color: colors.white }}>
+          <IconSearch />
+        </InputAdornment>
+      }
+      suggestions={suggestions}
+      suggestionsError={error}
+      suggestionsLoaded={loaded}
+      suggestionsLoading={isLoading}
+      value={search}
+    />
+  );
+};
 
 export default withRouter(Search);

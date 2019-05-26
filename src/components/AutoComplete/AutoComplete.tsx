@@ -99,6 +99,7 @@ const AutoComplete = ({
   suggestionsLoaded = false,
   suggestionsError = false,
 }: Props) => {
+  console.log('onSuggestionsFetch', onSuggestionsFetch);
   const autosuggestProps = {
     renderInputComponent,
     suggestions,
