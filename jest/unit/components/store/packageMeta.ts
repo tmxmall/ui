@@ -96,7 +96,6 @@ export const packageMeta = {
       'js-yaml': '^3.6.0',
       jsonwebtoken: '^7.4.1',
       lockfile: '^1.0.1',
-      lodash: '4.17.4',
       lunr: '^0.7.0',
       marked: '0.3.6',
       mime: '^1.3.6',

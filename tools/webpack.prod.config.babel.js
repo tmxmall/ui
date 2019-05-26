@@ -5,7 +5,6 @@ const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const baseConfig = require('./webpack.config');
 const env = require('../config/env');
-const _ = require('lodash');
 const merge = require('webpack-merge');
 const getPackageJson = require('./getPackageJson');
 
@@ -70,7 +69,7 @@ const prodConf = {
 prodConf.module.rules = baseConfig.module.rules
   .filter(loader => Array.isArray(loader.use) && loader.use.find(v => /css/.test(v.loader.split('-')[0])))
   .forEach(loader => {
-    loader.use = [MiniCssExtractPlugin.loader].concat(_.tail(loader.use));
+    loader.use = [MiniCssExtractPlugin.loader].concat(loader.use.slice(1, loader.use.length));
   });
 
 module.exports = merge(baseConfig, prodConf);
