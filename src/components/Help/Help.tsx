@@ -38,11 +38,6 @@ const Help: React.FC = () => {
         {renderHeadingClipboardSegments('2. Publish', `npm publish --registry ${registryUrl}`)}
         <Text variant="body2">{'3. Refresh this page.'}</Text>
       </CardContent>
-      <CardActions>
-        <Button color="primary" href="https://verdaccio.org/docs/en/installation" size="small">
-          {'Learn More'}
-        </Button>
-      </CardActions>
     </Card>
   );
 };
