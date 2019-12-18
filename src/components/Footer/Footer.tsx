@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { goToVerdaccioWebsite } from '../../utils/windows';
+import { goToTmxmallWebsite } from '../../utils/windows';
 
 import { Wrapper, Left, Right, Earth, Flags, Love, Flag, Logo, Inner, ToolTip } from './styles';
 
@@ -24,10 +24,8 @@ const HEARTH_EMOJI = '♥';
 
 const renderRight = (version = window.VERDACCIO_VERSION): JSX.Element => {
   return (
-    <Right>
-      {POWERED_LABEL}
-      <Logo img={true} name="verdaccio" onClick={goToVerdaccioWebsite} pointer={true} size="md" />
-      {`/ ${version}`}
+    <Right onClick={goToTmxmallWebsite}>
+      {POWERED_LABEL} Tmxmall {`/ ${version}`} {renderTooltip()}
     </Right>
   );
 };
@@ -44,8 +42,6 @@ const renderLeft = (): JSX.Element => (
 const Footer: React.FC = () => (
   <Wrapper>
     <Inner>
-      {renderLeft()}
-      {renderRight()}
     </Inner>
   </Wrapper>
 );

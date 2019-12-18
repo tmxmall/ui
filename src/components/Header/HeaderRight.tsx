@@ -58,7 +58,6 @@ const HeaderRight: React.FC<Props> = ({
         <HeaderToolTip onClick={onToggleMobileNav} title={'Search packages'} tooltipIconType={'search'} />
       )}
       <HeaderToolTip title={'Documentation'} tooltipIconType={'help'} />
-      <HeaderToolTip onClick={onOpenRegistryInfoDialog} title={'Registry Information'} tooltipIconType={'info'} />
       {username ? (
         <HeaderMenu
           anchorEl={anchorEl}
