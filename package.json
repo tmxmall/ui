@@ -1,7 +1,7 @@
 {
   "name": "verdaccio-theme-tmxmall",
-  "version": "0.0.3",
-  "description": "Verdaccio User Interface",
+  "version": "0.0.4",
+  "description": "Tmxmall Npm Repo User Interface",
   "author": {
     "name": "Ray Chen",
     "email": "chenyuncai@tmxmall.com"
@@ -210,10 +210,5 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/verdaccio",
-    "logo": "https://opencollective.com/verdaccio/logo.txt"
   }
 }
